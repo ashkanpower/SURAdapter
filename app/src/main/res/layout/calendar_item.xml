@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <hivatec.ir.testrecycler.PersianCalendar.SquareRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/layout"
+        >
+
+
+        <TextView
+
+            android:id="@+id/textView"
+            android:text="1"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            />
+
+
+    </hivatec.ir.testrecycler.PersianCalendar.SquareRelativeLayout>
+
+</RelativeLayout>

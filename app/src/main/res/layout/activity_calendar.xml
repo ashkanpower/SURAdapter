@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="hivatec.ir.testrecycler.CalendarActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.AppBarOverlay">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+        </android.support.design.widget.AppBarLayout>
+
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/calendarRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            >
+
+
+        </android.support.v7.widget.RecyclerView>
+
+
+<!--
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+
+                android:id="@+id/calendarLayout"
+                >
+
+
+                <hivatec.ir.testrecycler.PersianCalendar.PersianCalendar
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </hivatec.ir.testrecycler.PersianCalendar.PersianCalendar>
+
+                <hivatec.ir.testrecycler.PersianCalendar.PersianCalendar
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </hivatec.ir.testrecycler.PersianCalendar.PersianCalendar>
+
+
+                <hivatec.ir.testrecycler.PersianCalendar.PersianCalendar
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </hivatec.ir.testrecycler.PersianCalendar.PersianCalendar>
+
+
+                <hivatec.ir.testrecycler.PersianCalendar.PersianCalendar
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </hivatec.ir.testrecycler.PersianCalendar.PersianCalendar>
+
+
+                <hivatec.ir.testrecycler.PersianCalendar.PersianCalendar
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </hivatec.ir.testrecycler.PersianCalendar.PersianCalendar>
+
+
+                <hivatec.ir.testrecycler.PersianCalendar.PersianCalendar
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </hivatec.ir.testrecycler.PersianCalendar.PersianCalendar>
+
+
+
+
+            </LinearLayout>
+        </ScrollView>
+-->
+
+    </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>

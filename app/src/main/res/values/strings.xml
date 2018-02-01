@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">TestRecycler</string>
+    <string name="title_activity_second">SecondActivity</string>
+    <string name="title_activity_calendar">CalendarActivity</string>
+</resources>
