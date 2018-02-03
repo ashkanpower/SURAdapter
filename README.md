@@ -7,7 +7,7 @@ Just take any model and implement ItemHolder interface to it and fill a binder o
 
 How to get
 --------
-You can copy and paste the files in your project, it is just 3 files and you can edit it as you like.
+You can copy and paste the files in your project from this [link](https://github.com/ashkanpower/SURAdapter/tree/master/suradapter/src/main/java/hivatec/ir/suradapter), it is just 3 files and you can edit it as you like.
 and also get it by gradle :
 
 ```gradle
