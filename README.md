@@ -5,6 +5,28 @@ An easy and simple way to turn your models into RecyclerView Cells.
 
 Just take any model and implement ItemHolder interface to it and fill a binder object. thats it!
 
+How to get
+--------
+You can copy and paste the files in your project, it is just 3 files and you can edit it as you like.
+and also get it by gradle :
+
+```gradle
+
+  //you sould add jitpack to your repositories 
+	allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}
+  
+  //and then
+  dependencies {
+		compile 'com.github.User:Repo:Tag'
+	}
+
+```
+
 How to use
 --------
 
