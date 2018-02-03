@@ -17,10 +17,10 @@ public class SURAdapter extends RecyclerView.Adapter<ItemHolder> {
     ArrayList<ItemBinder> items = new ArrayList<>();
 
 
-    public SURAdapter(ArrayList<ItemBinder> items){
-        for (Object obj : items) {
+    public SURAdapter(ArrayList items) {
 
-            if(obj instanceof ItemBinder) {
+        for (Object obj : items) {
+            if (obj instanceof ItemBinder) {
 
                 this.items.add((ItemBinder) obj);
             }
@@ -32,8 +32,6 @@ public class SURAdapter extends RecyclerView.Adapter<ItemHolder> {
 
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(viewType, parent, false);
-
-        Log.i("hivatest", "new holder for : " + viewType);
 
         return new ItemHolder(itemView);
     }
@@ -53,5 +51,34 @@ public class SURAdapter extends RecyclerView.Adapter<ItemHolder> {
     @Override
     public int getItemCount() {
         return items.size();
+    }
+
+    public void addItem(ItemBinder item) {
+
+        this.items.add(item);
+    }
+
+    public void addItems(ArrayList items) {
+        for (Object obj : items) {
+            if (obj instanceof ItemBinder) {
+
+                this.items.add((ItemBinder) obj);
+            }
+        }
+    }
+
+    public void setItems(ArrayList items) {
+        this.items = new ArrayList<>();
+        for (Object obj : items) {
+            if (obj instanceof ItemBinder) {
+
+                this.items.add((ItemBinder) obj);
+            }
+        }
+    }
+
+    public ArrayList getItems(ArrayList items) {
+
+        return items;
     }
 }
