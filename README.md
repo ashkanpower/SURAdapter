@@ -13,17 +13,18 @@ and also get it by gradle :
 ```gradle
 
   //you sould add jitpack to your repositories 
-	allprojects {
-		repositories {
-			...
-			maven { url 'https://jitpack.io' }
-		}
+  allprojects {
+	repositories {
+	    ...
+	    maven { url 'https://jitpack.io' }
 	}
+  }
   
   //and then
   dependencies {
-		compile 'com.github.User:Repo:Tag'
-	}
+    implementation 'com.android.support:recyclerview-v7:26.1.0'
+    compile 'com.github.ashkanpower:SURAdapter:1.1'
+  }
 
 ```
 
