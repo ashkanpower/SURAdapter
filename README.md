@@ -23,7 +23,7 @@ and also get it by gradle :
   //and then
   dependencies {
     implementation 'com.android.support:recyclerview-v7:26.1.0'
-    compile 'com.github.ashkanpower:SURAdapter:1.1'
+    compile 'com.github.ashkanpower:SURAdapter:2.0'
   }
 
 ```
