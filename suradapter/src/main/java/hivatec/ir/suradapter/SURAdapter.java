@@ -40,8 +40,7 @@ public class SURAdapter extends RecyclerView.Adapter<ItemHolder> {
     @Override
     public void onBindViewHolder(ItemHolder holder, int position) {
 
-        items.get(position).bindToHolder(holder, holder.itemView.getContext());
-        items.get(position).bindListener(itemsListener);
+        items.get(position).bindToHolder(holder, holder.itemView.getContext(), itemsListener);
     }
 
 
