@@ -16,6 +16,7 @@ public class SURAdapter extends RecyclerView.Adapter<ItemHolder> {
 
     ArrayList<ItemBinder> items = new ArrayList<>();
 
+    Object itemsListener;
 
     public SURAdapter(ArrayList items) {
 
@@ -40,6 +41,7 @@ public class SURAdapter extends RecyclerView.Adapter<ItemHolder> {
     public void onBindViewHolder(ItemHolder holder, int position) {
 
         items.get(position).bindToHolder(holder, holder.itemView.getContext());
+        items.get(position).bindListener(itemsListener);
     }
 
 
@@ -51,6 +53,11 @@ public class SURAdapter extends RecyclerView.Adapter<ItemHolder> {
     @Override
     public int getItemCount() {
         return items.size();
+    }
+
+
+    public void setItemsListener(Object itemsListener) {
+        this.itemsListener = itemsListener;
     }
 
     public void addItem(ItemBinder item) {
