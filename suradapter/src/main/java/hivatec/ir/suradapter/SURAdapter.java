@@ -85,8 +85,14 @@ public class SURAdapter extends RecyclerView.Adapter<ItemHolder> {
         }
     }
 
-    public ArrayList getItems(ArrayList items) {
+    public ArrayList getItems() {
 
         return items;
+    }
+
+
+    public void removeItem(ItemBinder item){
+
+        items.remove(item);
     }
 }
