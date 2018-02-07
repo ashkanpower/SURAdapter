@@ -9,7 +9,6 @@ import android.content.Context;
 public interface ItemBinder {
 
     int getResourceId();
-    void bindToHolder(ItemHolder binder, Context context);
-    void bindListener(Object listener);
+    void bindToHolder(ItemHolder binder, Context context, Object listener);
 
 }
