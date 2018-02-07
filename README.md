@@ -108,7 +108,7 @@ class Model implements ItemBinder{
     }
 
     @Override
-    public void bindToHolder(ItemHolder itemHolder, Context context) {
+    public void bindToHolder(ItemHolder itemHolder, Context context, Object listener) {
         
         //now just find your view, cast it, and use it
         itemHolder.<ImageView>find(R.id.image).setImageDrawable(image);
@@ -136,3 +136,18 @@ now just make an object from SURAdapter and feed it with your model and set it t
 ```
 
 that's it!
+
+you can also pass a listener to each type of items you like :
+
+```java
+        
+	SURAdapter adapter = new SURAdapter(items);
+	adapter.setItemsListener(Model.class, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "something happened for model", Toast.LENGTH_SHORT).show();
+            }
+        });
+```
+
+it sends a click listener to all Model item.
