@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by ashkan on 2/1/18.
@@ -16,7 +17,7 @@ public class SURAdapter extends RecyclerView.Adapter<ItemHolder> {
 
     ArrayList<ItemBinder> items = new ArrayList<>();
 
-    Object itemsListener;
+    HashMap<Class, Object> itemsListenerMap = new HashMap<>();
 
     public SURAdapter(ArrayList items) {
 
@@ -40,7 +41,8 @@ public class SURAdapter extends RecyclerView.Adapter<ItemHolder> {
     @Override
     public void onBindViewHolder(ItemHolder holder, int position) {
 
-        items.get(position).bindToHolder(holder, holder.itemView.getContext(), itemsListener);
+        Object listener = itemsListenerMap.get(items.get(position).getClass());
+        items.get(position).bindToHolder(holder, holder.itemView.getContext(), listener);
     }
 
 
@@ -55,8 +57,8 @@ public class SURAdapter extends RecyclerView.Adapter<ItemHolder> {
     }
 
 
-    public void setItemsListener(Object itemsListener) {
-        this.itemsListener = itemsListener;
+    public void setItemsListener(Class forItemWithClass, Object itemsListener) {
+        this.itemsListenerMap.put(forItemWithClass, itemsListener);
     }
 
     public void addItem(ItemBinder item) {
