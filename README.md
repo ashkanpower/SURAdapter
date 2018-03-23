@@ -23,7 +23,7 @@ and also get it by gradle :
   //and then
   dependencies {
     implementation 'com.android.support:recyclerview-v7:26.1.0'
-    compile 'com.github.ashkanpower:SURAdapter:2.0'
+    compile 'com.github.ashkanpower:SURAdapter:3'
   }
 
 ```
@@ -38,12 +38,12 @@ public class Model {
 
   String title;
   int rate;
-  String imageURL;
+  int imageRes;
  
-  public Model(String title, int rate, String imageURL) {
+  public Model(String title, int rate, int imageRes) {
         this.title = title;
         this.rate = rate;
-        this.imageURL = imageURL;
+        this.imageRes = imageRes;
     }
 }
 ```
@@ -94,12 +94,12 @@ class Model implements ItemBinder{
 
     String title;
     int rate;
-    String imageURL;
+    int imageRes;
 
-    public Model(String title, int rate, String imageURL) {
+    public Model(String title, int rate, int imageRes) {
         this.title = title;
         this.rate = rate;
-        this.imageURL = imageURL;
+        this.imageRes = imageRes;
     }
 
     @Override
@@ -111,7 +111,7 @@ class Model implements ItemBinder{
     public void bindToHolder(ItemHolder itemHolder, Context context, Object listener) {
         
         //now just find your view, cast it, and use it
-        itemHolder.<ImageView>find(R.id.image).setImageDrawable(image);
+        itemHolder.<ImageView>find(R.id.image).setImageResource(imageRes);
         itemHolder.<TextView>find(R.id.title).setText(title);
         itemHolder.<TextView>find(R.id.rating).setText("rating is : " + rate);
     }
@@ -148,6 +148,15 @@ you can also pass a listener to each type of items you like :
                 Toast.makeText(MainActivity.this, "something happened for model", Toast.LENGTH_SHORT).show();
             }
         });
+```
+and then 
+
+```java
+
+ public void bindToHolder(ItemHolder itemHolder, Context context, Object listener) {
+ 
+ 	itemHolder.itemView.setOnClickListener((View.OnClickListener) listener));
+ }
 ```
 
 it sends a click listener to all Model item.
