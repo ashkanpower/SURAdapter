@@ -23,7 +23,7 @@ and also get it by gradle :
   //and then
   dependencies {
     implementation 'com.android.support:recyclerview-v7:26.1.0'
-    compile 'com.github.ashkanpower:SURAdapter:3'
+    compile 'com.github.ashkanpower:SURAdapter:v3.0.1'
   }
 
 ```
@@ -137,15 +137,34 @@ now just make an object from SURAdapter and feed it with your model and set it t
 
 that's it!
 
+you can add an item click listener to a specific Class like this :
+
+```java
+        adapter.setOnItemClickListener(Movie.class, new OnItemClickListener<Movie>() {
+            @Override
+            public void onItemClicked(Movie item, ItemHolder holder) {
+
+                Toast.makeText(MainActivity.this, item.toString(), Toast.LENGTH_SHORT).show();
+                holder.<TextView>find(R.id.id).setText("this was clicked");
+            }
+        });
+
+````
+
 you can also pass a listener to each type of items you like :
 
 ```java
+
+	public interface MovieItemListener {
+        
+              void onLongClickListener(Movie item);
+    	}
         
 	SURAdapter adapter = new SURAdapter(items);
-	adapter.setItemsListener(Model.class, new View.OnClickListener() {
+	adapter.setItemsListener(Movie.class, new MovieItemListener() {
             @Override
-            public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "something happened for model", Toast.LENGTH_SHORT).show();
+            public void onLongClickListener(Movie item) {
+                //do something when Long clicked
             }
         });
 ```
@@ -155,8 +174,17 @@ and then
 
  public void bindToHolder(ItemHolder itemHolder, Context context, Object listener) {
  
- 	itemHolder.itemView.setOnClickListener((View.OnClickListener) listener));
+ 	itemHolder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+	    
+	    	if(listener instanceof MovieItemListener){
+                    ((MovieItemListener) listener).onDoubleClickListener(Movie.this);
+                }
+                return false;
+            }
+        });
  }
 ```
 
-it sends a click listener to all Model item.
+it sends a custom listener to all Movie item.
