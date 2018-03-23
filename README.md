@@ -44,7 +44,7 @@ Fast use
  items.add(new Movie());
  recyclerView.setAdapter(new SURAdapter(items));
 
-
+//in Movie.java
 class Movie implements ItemBinder{
 
     String title;
