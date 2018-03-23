@@ -18,6 +18,7 @@ public class SURAdapter extends RecyclerView.Adapter<ItemHolder> {
     ArrayList<ItemBinder> items = new ArrayList<>();
 
     HashMap<Class, Object> itemsListenerMap = new HashMap<>();
+    HashMap<Class, OnItemClickListener> itemClickListenerMap = new HashMap<>();
 
     public SURAdapter(ArrayList items) {
 
@@ -39,10 +40,23 @@ public class SURAdapter extends RecyclerView.Adapter<ItemHolder> {
     }
 
     @Override
-    public void onBindViewHolder(ItemHolder holder, int position) {
+    public void onBindViewHolder(final ItemHolder holder, int position) {
 
         Object listener = itemsListenerMap.get(items.get(position).getClass());
         items.get(position).bindToHolder(holder, holder.itemView.getContext(), listener);
+
+        final OnItemClickListener clickListener = itemClickListenerMap.get(items.get(position).getClass());
+        if(clickListener != null){
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    clickListener.onItemClicked(items.get(holder.getAdapterPosition()), holder);
+                }
+            });
+        }
+
+
     }
 
 
@@ -59,6 +73,10 @@ public class SURAdapter extends RecyclerView.Adapter<ItemHolder> {
 
     public void setItemsListener(Class forItemWithClass, Object itemsListener) {
         this.itemsListenerMap.put(forItemWithClass, itemsListener);
+    }
+
+    public <T> void setOnItemClickListener(Class<T> forItemWithClass, OnItemClickListener<T> listener) {
+        this.itemClickListenerMap.put(forItemWithClass, listener);
     }
 
     public void addItem(ItemBinder item) {
