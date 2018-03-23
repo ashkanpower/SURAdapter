@@ -6,10 +6,10 @@ An easy and simple way to turn your models into RecyclerView Cells. Just take an
 
 Why to use
 -------------
-1.It is simple because you dont need to define an adapter for each Collection of data
-2.It is universal so you can any data model in one adapter
-3.It is very fast and manages the view recycling in background
-4.It is adaptable with change
+1. It is simple because you dont need to define an adapter for each Collection of data
+2. It is universal so you can any data model in one adapter
+3. It is very fast and manages the view recycling in background
+4. It is adaptable with change
 
 
 How to get
