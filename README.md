@@ -57,6 +57,7 @@ class Movie implements ItemBinder{
     @Override
     public void bindToHolder(ItemHolder itemHolder, Context context, Object listener) {
         itemHolder.<TextView>find(R.id.title).setText(title);
+	//the find method only finds the view once and recycles view for further use
     }
 }
 ```
