@@ -1,14 +1,20 @@
 SURAdapter
 ====================
+Simple Universal RecyclerView Adapter
 
-An easy and simple way to turn your models into RecyclerView Cells.
+An easy and simple way to turn your models into RecyclerView Cells. Just take any model and implement ItemHolder interface to it and fill a binder object. thats it!
 
-Just take any model and implement ItemHolder interface to it and fill a binder object. thats it!
+Why to use
+-------------
+1.It is simple because you dont need to define an adapter for each Collection of data
+2.It is universal so you can any data model in one adapter
+3.It is very fast and manages the view recycling in background
+4.It is adaptable with change
+
 
 How to get
 --------
-You can copy and paste the files in your project from this [link](https://github.com/ashkanpower/SURAdapter/tree/master/suradapter/src/main/java/hivatec/ir/suradapter), it is just 3 files and you can edit it as you like.
-and also get it by gradle :
+Get it through gradle:
 
 ```gradle
 
@@ -28,7 +34,34 @@ and also get it by gradle :
 
 ```
 
-How to use
+Fast use
+-------
+
+```java
+//in activity :
+        
+ ArrayList items = new ArrayList();
+ items.add(new Movie());
+ recyclerView.setAdapter(new SURAdapter(items));
+
+
+class Movie implements ItemBinder{
+
+    String title;
+    
+    @Override
+    public int getResourceId() {
+        return R.layout.item_movie; //set your xml file id
+    }
+
+    @Override
+    public void bindToHolder(ItemHolder itemHolder, Context context, Object listener) {
+        itemHolder.<TextView>find(R.id.title).setText(title);
+    }
+}
+```
+
+How to use (explained)
 --------
 
 Imagine you have a model and xml for a recycler cell :
