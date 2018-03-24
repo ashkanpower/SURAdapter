@@ -1,14 +1,20 @@
 SURAdapter
 ====================
+Simple Universal RecyclerView Adapter
 
-An easy and simple way to turn your models into RecyclerView Cells.
+An easy and simple way to turn your models into RecyclerView Cells. Just take any model and implement ItemHolder interface to it and fill a binder object. thats it!
 
-Just take any model and implement ItemHolder interface to it and fill a binder object. thats it!
+Why to use
+-------------
+1. It is simple because you dont need to define an adapter for each Collection of data
+2. It is universal so you can pass any data model to one adapter
+3. It is very fast and manages the view recycling in background
+4. It is adaptable with change
+
 
 How to get
 --------
-You can copy and paste the files in your project from this [link](https://github.com/ashkanpower/SURAdapter/tree/master/suradapter/src/main/java/hivatec/ir/suradapter), it is just 3 files and you can edit it as you like.
-and also get it by gradle :
+Get it through gradle:
 
 ```gradle
 
@@ -23,12 +29,40 @@ and also get it by gradle :
   //and then
   dependencies {
     implementation 'com.android.support:recyclerview-v7:26.1.0'
-    compile 'com.github.ashkanpower:SURAdapter:3'
+    compile 'com.github.ashkanpower:SURAdapter:v3.0.1'
   }
 
 ```
 
-How to use
+Fast use
+-------
+
+```java
+//in activity :
+        
+ ArrayList items = new ArrayList();
+ items.add(new Movie());
+ recyclerView.setAdapter(new SURAdapter(items));
+
+//in Movie.java
+class Movie implements ItemBinder{
+
+    String title;
+    
+    @Override
+    public int getResourceId() {
+        return R.layout.item_movie; //set your xml file id
+    }
+
+    @Override
+    public void bindToHolder(ItemHolder itemHolder, Context context, Object listener) {
+        itemHolder.<TextView>find(R.id.title).setText(title);
+	//the find method only finds the view once and recycles view for further use
+    }
+}
+```
+
+How to use (explained)
 --------
 
 Imagine you have a model and xml for a recycler cell :
@@ -137,15 +171,34 @@ now just make an object from SURAdapter and feed it with your model and set it t
 
 that's it!
 
+you can add an item click listener to a specific Class like this :
+
+```java
+        adapter.setOnItemClickListener(Movie.class, new OnItemClickListener<Movie>() {
+            @Override
+            public void onItemClicked(Movie item, ItemHolder holder) {
+
+                Toast.makeText(MainActivity.this, item.toString(), Toast.LENGTH_SHORT).show();
+                holder.<TextView>find(R.id.id).setText("this was clicked");
+            }
+        });
+
+````
+
 you can also pass a listener to each type of items you like :
 
 ```java
+
+	public interface MovieItemListener {
+        
+              void onLongClickListener(Movie item);
+    	}
         
 	SURAdapter adapter = new SURAdapter(items);
-	adapter.setItemsListener(Model.class, new View.OnClickListener() {
+	adapter.setItemsListener(Movie.class, new MovieItemListener() {
             @Override
-            public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "something happened for model", Toast.LENGTH_SHORT).show();
+            public void onLongClickListener(Movie item) {
+                //do something when Long clicked
             }
         });
 ```
@@ -155,8 +208,17 @@ and then
 
  public void bindToHolder(ItemHolder itemHolder, Context context, Object listener) {
  
- 	itemHolder.itemView.setOnClickListener((View.OnClickListener) listener));
+ 	itemHolder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+	    
+	    	if(listener instanceof MovieItemListener){
+                    ((MovieItemListener) listener).onDoubleClickListener(Movie.this);
+                }
+                return false;
+            }
+        });
  }
 ```
 
-it sends a click listener to all Model item.
+it sends a custom listener to all Movie item.
