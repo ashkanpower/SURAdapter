@@ -81,7 +81,7 @@ or
             }
         }); 
 	
- recyclerView.setAdapter();
+ recyclerView.setAdapter(adapter);
 
 //in Movie.java
  class Movie {
