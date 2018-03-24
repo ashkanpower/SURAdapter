@@ -1,5 +1,6 @@
 package hivatec.ir.suradapter;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
@@ -17,7 +18,7 @@ public class ItemHolder extends RecyclerView.ViewHolder {
     }
 
     HashMap<Integer, View> viewMap = new HashMap<>();
-
+    public Context context;
 
     public <T extends View> T find(int viewId){
 

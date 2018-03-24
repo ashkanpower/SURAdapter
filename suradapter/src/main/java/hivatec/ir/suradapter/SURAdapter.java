@@ -1,5 +1,6 @@
 package hivatec.ir.suradapter;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -43,6 +44,7 @@ public class SURAdapter extends RecyclerView.Adapter<ItemHolder> {
     public void onBindViewHolder(final ItemHolder holder, int position) {
 
         Object listener = itemsListenerMap.get(items.get(position).getClass());
+        holder.context = holder.itemView.getContext();
         items.get(position).bindToHolder(holder, holder.itemView.getContext(), listener);
 
         final OnItemClickListener clickListener = itemClickListenerMap.get(items.get(position).getClass());
@@ -55,6 +57,8 @@ public class SURAdapter extends RecyclerView.Adapter<ItemHolder> {
                 }
             });
         }
+
+
 
 
     }
@@ -108,9 +112,23 @@ public class SURAdapter extends RecyclerView.Adapter<ItemHolder> {
         return items;
     }
 
-
     public void removeItem(ItemBinder item){
 
         items.remove(item);
+    }
+
+    public void clearItems(){
+
+        items = new ArrayList<>();
+    }
+
+
+    public <T> void forEach(final ArrayList<T> items, final ItemHolderIterator<T> iterator){
+
+
+        for (final T obj : items) {
+
+            addItem(new ItemBinderIterator(obj, iterator));
+        }
     }
 }
