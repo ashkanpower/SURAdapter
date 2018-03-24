@@ -29,7 +29,7 @@ Get it through gradle:
   //and then
   dependencies {
     implementation 'com.android.support:recyclerview-v7:26.1.0'
-    compile 'com.github.ashkanpower:SURAdapter:v3.0.1'
+    compile 'com.github.ashkanpower:SURAdapter:v3.0.2'
   }
 
 ```
@@ -40,9 +40,9 @@ Fast use
 ```java
 //in activity :
         
- ArrayList items = new ArrayList();
- items.add(new Movie());
- recyclerView.setAdapter(new SURAdapter(items));
+ ArrayList movieArrayList = new ArrayList();
+ movieArrayList.add(new Movie());
+ recyclerView.setAdapter(new SURAdapter(movieArrayList));
 
 //in Movie.java
 class Movie implements ItemBinder{
@@ -61,6 +61,33 @@ class Movie implements ItemBinder{
     }
 }
 ```
+
+or 
+
+```java
+
+//in activity :
+ SURAdapter adapter = new SURAdapter();
+ adapter.forEach(movieArrayList, new ItemHolderIterator<Movie>(R.layout.item_movie) {
+
+            @Override
+            public void bindToHolder(ItemHolder binder, Movie item) {
+                binder.<TextView>find(R.id.title).setText(item.title);
+            }
+
+            @Override
+            public void itemClicked(ItemHolder binder, Movie item) {
+                Toast.makeText(binder.context, item.title, Toast.LENGTH_SHORT).show();
+            }
+        }); 
+	
+ recyclerView.setAdapter();
+
+//in Movie.java
+ class Movie {
+       public String title;
+ }
+````
 
 How to use (explained)
 --------
