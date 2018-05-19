@@ -52,8 +52,11 @@ public class SURAdapter extends RecyclerView.Adapter<ItemHolder> {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    try {
+                        clickListener.onItemClicked(items.get(holder.getAdapterPosition()), holder);
+                    }catch (Exception e){
 
-                    clickListener.onItemClicked(items.get(holder.getAdapterPosition()), holder);
+                    }
                 }
             });
         }
